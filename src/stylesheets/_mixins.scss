@@ -1,0 +1,433 @@
+/*
+  Use SCSS' @extend directive if you want to add grid-container functionality to a selector.
+  For example:
+
+  .my-list {
+    @extend %grid-container;
+  }
+
+*/
+%grid-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  @mixin grid-container {
+    /*
+      You may only @extend selectors within the same directive. Cannot use
+      @extend %grid-container;
+  
+      We need to effectively copy in the contents of the %grid-container
+      placeholder selector.
+    */
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  /* Sets the width of an element to take up a given columns of space. */
+  @mixin grid-column($number) {
+    @if $number == $grid-column-count {
+      width: column-width($number);
+    } @else {
+      width: column-width($number);
+      margin-right: one-gutter-in-percent();
+    }
+  }
+  
+  /*
+    Sets the nth element to be the last one in a row.
+    This removes the margin on the right so that the last element in the row
+    will fit in instead of having to wrap to the next line.
+  */
+  @mixin omega($num, $offset: 0) {
+    &:nth-child(#{$num}n+#{$offset}) {
+      margin-right: 0;
+    }
+  }
+  
+  /*
+    Allows pushing (shifting) columns by applying the necesary amount of left margin.
+    This means you won't have to create fake or empty elements just to position something
+    to a given column.
+  */
+  @mixin grid-push($number) {
+    margin-left: column-width($number) + one-gutter-in-percent();
+  }
+  
+  /*
+    Standard way to add vertical spacing between elements.
+    This allows us to keep a vertical rhythm across the site.
+  */
+  @mixin push-down {
+    margin-bottom: $vertical-spacing;
+  }
+  
+  /*
+    Standard way to add vertical spacing between elements.
+    This allows us to keep a vertical rhythm across the site.
+    This version uses a reduced amount of space, useful between
+    labels and input fields to keep them visually together.
+  */
+  @mixin push-down-small {
+    margin-bottom: $vertical-spacing/2;
+  }
+  
+  /*
+    Standard way to add vertical spacing between elements.
+    This allows us to keep a vertical rhythm across the site.
+    This version uses an increased reduced amount of space, useful between
+    big blocks of content.
+  */
+  @mixin push-down-large {
+    margin-bottom: $vertical-spacing*2;
+  }
+  
+  /*
+    Standard way to add vertical spacing between elements.
+    This allows us to keep a vertical rhythm across the site.
+    This version uses a reduced amount of space, useful between
+    labels and input fields to keep them visually together.
+  */
+  @mixin push-down-small {
+    margin-bottom: $vertical-spacing/2;
+  }
+  
+  @mixin padding-top {
+    padding-top: $vertical-spacing;
+  }
+  
+  @mixin padding-bottom {
+    padding-bottom: $vertical-spacing;
+  }
+  
+  @mixin padding-left {
+    padding-left: 20px;
+  }
+  
+  @mixin padding-right {
+    padding-right: 20px;
+  }
+  
+  /*
+    TODO: Shorten this.
+  */
+  @mixin padding-around {
+    @include padding-top;
+    @include padding-right;
+    @include padding-bottom;
+    @include padding-left;
+  }
+  
+  @mixin padding-bottom {
+    padding-bottom: 20px;
+  }
+  
+  @mixin padding-left {
+    padding-left: 20px;
+  }
+  
+  @mixin padding-right {
+    padding-right: 20px;
+  }
+  
+  /*
+    TODO: Shorten this.
+  */
+  @mixin padding-around {
+    @include padding-top;
+    @include padding-right;
+    @include padding-bottom;
+    @include padding-left;
+  }
+  
+  /*
+  
+    The ever green clearfix mixin in case you actually need floating.
+    Not often used in the new era where elements are positioned using flexbox.
+  */
+  @mixin clearfix {
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+  
+  /*
+  
+    Set the font-size based on the main html element font set.
+  
+  */
+  @mixin font-size($px, $base: $base-font-size) {
+    font-size: (($px * 1px) / $base) * 1rem;
+  }
+  
+  /*
+  
+    Hides the inner text of an element. Typically used in situations where you
+    need to keep the text for screen readers but want to enhance the element with a background image.
+  
+  */
+  @mixin hide-text {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0;
+  }
+  
+  /*
+  
+    Simple way to reset a <ol> or <ul> element.
+  
+  */
+  @mixin list-unstyled {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  /*
+  
+    Standard way to add a box-shadow to elements. By using the mixin we can keep things consistent.
+  
+  */
+  @mixin box-shadow {
+    box-shadow: 5px 5px 0px lighten($color-grey, 50%);
+  }
+  
+  /*
+  
+    Standard way to add a border-radius to elements. By using the mixin we can keep things consistent.
+  
+  */
+  @mixin border-radius {
+    border-radius: $border-radius;
+  }
+  
+  /*
+  
+    Set the z-index of an element. See the `zIndexValue` function where you need to declare an
+    element and set it in the list. By keeping a single list in a function we can make sure elements
+    won't overlap and z-index values can be kept track of in a single place.
+  
+  */
+  @mixin z-index($element) {
+    z-index: zIndexValue($element);
+  }
+  
+  /*
+  
+    Responsive mixin.
+  
+  */
+  @mixin media-desktop {
+    @media screen and (min-width: 960px) {
+      @content;
+    }
+  }
+  
+  /*
+  
+    Responsive mixin.
+  
+  */
+  
+  @mixin media-tablet {
+    @media screen and (min-width: 768px) {
+      @content;
+    }
+  }
+  
+  /*
+  
+    Responsive mixin.
+  */
+  @mixin media-mobile-and-tablet {
+    @media screen and (max-width: 959px) {
+      @content;
+    }
+  }
+  
+  /*
+  
+    Responsive mixin. Note that this is usually not necessary as we should be building mobile-first pages.
+    Consider whether this makes sense in your scenario. You may need to override nth selectors for a mobile view.
+  
+  */
+  @mixin media-mobile-only {
+    @media screen and (max-width: 767px) {
+      @content;
+    }
+  }
+  
+  /*
+  
+    Responsive mixin.
+  
+  */
+  @mixin media-tablet-only {
+    @media screen and (min-width: 768px) and (max-width: 959px) {
+      @content;
+    }
+  }
+  
+  /*
+    Set the aspect ratio of an element. This is useful in a responsive  ontext where you want to...
+  */
+  @mixin aspect-ratio($width: 1, $height: 1) {
+    &:before {
+      content: "";
+      float: left;
+  
+      /*
+        essentially the aspect ratio.
+        100% means the div will remain 100%
+        as tall as it is wide, or square in other words.
+      */
+      padding-bottom: $height / $width * 100%;
+    }
+  
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+  
+  @mixin image-framed-box {
+    &:before {
+      display: none;
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0.2;
+    background: $color-yodel-green;}
+  
+    &:hover {
+      color: $color-yodel-green;
+  
+      &:before {
+        display: block;
+      }
+    }
+  }
+  
+  @mixin bordered-button($border-thickness, $width, $height) {
+    width: $width;
+    height: $height;
+    border: $border-thickness solid $color-grey-light;
+    color: $color-black;
+    text-align: center;
+    padding: 7px 0;
+  }
+  
+  @mixin gradient($color, $color-two) {
+    background: -webkit-gradient(linear, 0% 20%, 0% 100%, from($color), to($color-two));
+    background: -webkit-linear-gradient(top, $color-two, $color);
+    background:    -moz-linear-gradient(top, $color-two, $color);
+    background:     -ms-linear-gradient(top, $color-two, $color);
+    background:      -o-linear-gradient(top, $color-two, $color);
+    background: linear-gradient($color, $color-two);;
+    // background-color: $color;
+  }
+  
+  @mixin bordered-box-with-shadow($color) {
+    border: 1px solid $color;
+    box-shadow: 1px 1px 3px $color;
+  }
+  
+  /*
+  
+    Visual helper to show the grid system. Useful when you are building new interfaces.
+    In order to enable it, you need to set $dev-enable-grid-background to true
+    in the variables.scss file.
+  
+  */
+  @mixin grid-background() {
+    @if $dev-enable-grid-background == true {
+      background-image: image-url('grid-helper.svg');
+      background-size: 100%;
+  
+  
+  /*
+        Same, linear gradient version in case we want to generate this dynamically
+        from $grid-column-count in collectplus_yodel/variables:
+  
+        linear-gradient(
+        to right,
+  
+        // 1
+        grid-color-column() column-width(1),
+        grid-color-gutter() column-width(1),
+        grid-color-gutter() (column-width(1) + one-gutter-in-percent()),
+  
+        // 2
+        grid-color-column() (column-width(1) + one-gutter-in-percent()),
+        grid-color-column() (column-width(2)),
+        grid-color-gutter() (column-width(2)),
+        grid-color-gutter() (column-width(2) + one-gutter-in-percent()),
+  
+        // 3
+        grid-color-column() (column-width(2) + one-gutter-in-percent()),
+        grid-color-column() (column-width(3)),
+        grid-color-gutter() (column-width(3)),
+        grid-color-gutter() (column-width(3) + one-gutter-in-percent()),
+  
+        // 4
+        grid-color-column() (column-width(3) + one-gutter-in-percent()),
+        grid-color-column() (column-width(4)),
+        grid-color-gutter() (column-width(4)),
+        grid-color-gutter() (column-width(4) + one-gutter-in-percent()),
+  
+        // 5
+        grid-color-column() (column-width(4) + one-gutter-in-percent()),
+        grid-color-column() (column-width(5)),
+        grid-color-gutter() (column-width(5)),
+        grid-color-gutter() (column-width(5) + one-gutter-in-percent()),
+  
+        // 6
+        grid-color-column() (column-width(5) + one-gutter-in-percent()),
+        grid-color-column() (column-width(6)),
+        grid-color-gutter() (column-width(6)),
+        grid-color-gutter() (column-width(6) + one-gutter-in-percent()),
+  
+        // 7
+        grid-color-column() (column-width(6) + one-gutter-in-percent()),
+        grid-color-column() (column-width(7)),
+        grid-color-gutter() (column-width(7)),
+        grid-color-gutter() (column-width(7) + one-gutter-in-percent()),
+  
+        // 8
+        grid-color-column() (column-width(7) + one-gutter-in-percent()),
+        grid-color-column() (column-width(8)),
+        grid-color-gutter() (column-width(8)),
+        grid-color-gutter() (column-width(8) + one-gutter-in-percent()),
+  
+        // 9
+        grid-color-column() (column-width(8) + one-gutter-in-percent()),
+        grid-color-column() (column-width(9)),
+        grid-color-gutter() (column-width(9)),
+        grid-color-gutter() (column-width(9) + one-gutter-in-percent()),
+  
+        // 10
+        grid-color-column() (column-width(9) + one-gutter-in-percent()),
+        grid-color-column() (column-width(10)),
+        grid-color-gutter() (column-width(10)),
+        grid-color-gutter() (column-width(10) + one-gutter-in-percent()),
+  
+        // 11
+        grid-color-column() (column-width(10) + one-gutter-in-percent()),
+        grid-color-column() (column-width(11)),
+        grid-color-gutter() (column-width(11)),
+        grid-color-gutter() (column-width(11) + one-gutter-in-percent()),
+  
+        // 12
+        grid-color-column() (column-width(11) + one-gutter-in-percent()),
+        grid-color-column() (column-width(12))
+      ) !important
+      */
+    }
+  }
+  

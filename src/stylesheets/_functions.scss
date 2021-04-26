@@ -1,0 +1,55 @@
+// @function zIndexValue($element) {
+//     $z-index-order: exclusive-offer-ribbon, offer-cta-button, registration-input, registration-label, form-input-icon, osm-container, store-locator-location-warning, store-locator-form-input, store-locator-list, mobile-navigation-overlay, update-details, section-flash-message, nav-primary-nested-list, mobile-sidebar, webchat-form;
+//     $z-index: index($z-index-order, $element);
+ 
+//     @if $z-index {
+//        @return $z-index;
+//     }
+ 
+//     @error 'There is no item "#{$element}" in the $z-index-order list; choose one of: #{$z-index-order}';
+//     @return null;
+//  }
+ 
+ /*
+ 
+   1     2     3     4     5     6     7     8     9     10    11   12
+ | 4 |1| 4 |1| 4 |1| 4 |1| 4 |1| 4 |1| 4 |1| 4 |1| 4 |1| 4 |1| 4 |1| 4 |
+ 
+ */
+ 
+ @function grid-total-units() {
+   @return $grid-column-count*$grid-colum-to-gutter-ratio-column + ($grid-column-count - 1)*$grid-colum-to-gutter-ratio-gutter;
+ }
+ 
+ @function column-width($number) {
+   @if $number == 1 {
+     @return grid-one-column-percent();
+   } @else if $number == 12 {
+     @return 100%;
+   } @else {
+     @return ($number*grid-one-column-percent() + ($number - 1)*one-gutter-in-percent());
+   }
+ }
+ 
+ @function mobile-gutter-width() {
+   @return 15px;
+ }
+ 
+ @function grid-color-column() {
+   @return rgba(#8717FF, .5);
+ }
+ 
+ @function grid-color-gutter() {
+   @return rgba(#177CFF, .5);
+ }
+ 
+ @function grid-one-column-percent() {
+   @return ($grid-colum-to-gutter-ratio-column / grid-total-units())*100%;
+ }
+ 
+ @function one-gutter-in-percent() {
+   $value: ($grid-colum-to-gutter-ratio-gutter/grid-total-units())*100%;
+ 
+   @return $value;
+ }
+ 

@@ -1,0 +1,33 @@
+.price-column-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-column__tier {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  font-size: $base-font-size + 50;
+  font-weight: bold;
+  color: white;
+  @include push-down;
+  
+  &.-student {
+    background-color: $student-tier-color;
+  }
+
+  &.-general {
+    background-color: $general-tier-color;
+  }
+}
+
+.price-column__title {
+  font-size: $base-font-size + 15;
+  text-align: center;
+}
+
+.price-column__text {
+  font-size: $base-font-size;
+  text-align: center;
+}

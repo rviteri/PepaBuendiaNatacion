@@ -1,0 +1,50 @@
+.section-home-motto-and-intro {
+  background-color: $color-light-brown;
+}
+
+.section-content-motto-and-intro {
+  display: flex;
+  align-items: center;
+
+  .motto-container {
+    @include grid-column(6);
+    font-size: $base-font-size + 18;
+    font-weight: bold;
+    padding: 50px 0px;
+  }
+
+  .intro-container {
+    @include grid-column(5);
+    @include omega(2);
+    @include grid-push(1);
+    font-size: $base-font-size + 8;
+    padding: 50px 0px;
+  }
+}
+
+.info-block-list {
+  margin-bottom: 40px;
+}
+
+@include media-mobile-only {
+  .section-content-motto-and-intro {
+    flex-direction: column;
+    padding: 20px 0px;
+  
+    .motto-container {
+      @include grid-column(12);
+      @include omega(1);
+      font-size: $base-font-size + 18;
+      font-weight: bold;
+      padding: 20px 0px;
+    }
+  
+    .intro-container {
+      @include grid-column(12);
+      @include omega(1);
+      @include grid-push(0);
+      font-size: $base-font-size + 8;
+      padding: 20px 0px;
+    }
+  }
+}

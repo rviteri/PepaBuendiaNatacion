@@ -1,0 +1,140 @@
+/*
+
+  This file contains the basic layout of the CollectPlus website with the off-canvas navigation included.
+  Most probably changes to this file won't be necessary unless a major structure change is needed.
+
+  Individual sections should be set in their own SCSS files instead of being dumped here.
+
+  If you need a container element that has to behave like a semantic <section> element but it needs to be a different kind,
+  you can use the %section placeholder selector and extend from it. (This is what the .footer-main element does too)
+
+*/
+
+/*
+
+  Sections create the basic building blocks of a page, which divide the pages into individual (possiblty reusable)
+  semantic blocks.
+
+  A section is full width (so that it can have an end-to-end background image like the ones in the slider) and content
+  within it is placed in a .section-container wrapper element that is responsive, placed in the horizontal center.
+
+  NOTE: You can use the `responsive_section` helper in Rails to wrap content in section elements. The benefits of the
+  helper is to make sure the building blocks are consistent. In case a change is necessary, we won't have to revisit
+  every single template to make the changes.
+
+*/
+%section {
+    display: flex;
+    justify-content: center;
+  
+    .section-content {
+      @include grid-background;
+  
+      flex: 1; /* we need to expand to wull width because of the flex display of section */
+      max-width: 1200px;
+  
+      margin-left: mobile-gutter-width();
+      margin-right: mobile-gutter-width();
+    }
+  
+    /*
+      Fix Flexbug #2 in IE10-11:
+      When using align-items: center on a flex container in the column direction,
+      the contents of flex item, if too big, will overflow their container in IE 10-11.
+  
+      See https://github.com/philipwalton/flexbugs#flexbug-2
+    */
+    @media all and (-ms-high-contrast:none) and (min-width: 1230px)  {
+      overflow: hidden;
+      .section-content {
+        transform: translateX(-50%);
+  
+        /* This is to prevent the content of a normal article to shift 50%
+            for IE11 browsers */
+  
+        &.section-article-content {
+          transform: none;
+        }
+      }
+    }
+  }
+
+  section {
+    @extend %section;
+  }
+  
+  /* Helper class to add top padding to the section contents */
+  .section-content.-padded {
+    @include padding-top;
+  }
+  
+  .mobile-sidebar {
+    @include z-index(mobile-sidebar);
+  
+    position: fixed;
+    right: 0;
+    width: 100%;
+    min-height: 100vh;
+    transform: translateX(100%);
+    background: $color-white;
+  
+    /*
+      Only add a transition after the page has been loaded. This prevents
+      the transition from firing on first page render and the sidebar
+      is moving across the screen.
+    */
+    body.-loaded & {
+      transition: transform 0.3s ease-in-out;
+    }
+  
+    /*
+      Prevent the menu to be visible in desktop
+    */
+    @include media-desktop {
+      display: none;
+    }
+  }
+  
+  .mobile-sidebar-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 28px 25px 0px 40px;
+    height: 71px;
+    margin-bottom: 10px;
+  
+    background: #fff;
+  }
+  
+  /*
+  
+    Opening/closing the mobile navigation toggles a -menu-open
+    class on <body>. This triggers the navigation overlay
+    and the .mobile-sidebar slides in.
+  
+  */
+  
+  body.-menu-open {
+    .mobile-sidebar {
+      transform: translateX(0%);
+    }
+  }
+  
+  /* Section content with sidebar */
+  
+  @include media-tablet {
+    .section-content.-with-sidebar {
+      @include grid-container();
+    }
+  
+    .section-content-with-sidebar-content {
+      @include grid-column(7);
+    }
+  
+    .section-content-with-sidebar-sidebar {
+      @include grid-column(4);
+      @include grid-push(1);
+      margin-right: 0;
+    }
+  }
+  

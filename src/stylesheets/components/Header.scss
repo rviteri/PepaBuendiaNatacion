@@ -1,0 +1,145 @@
+.section-header {
+    position: fixed;
+    background-color: transparent;
+    width: 100%;
+    height: 90px;
+    transition: 0.5s;
+    z-index: 100;
+
+    &.-dark {
+        background-color: $dark-background;
+
+        .navbar-logo,
+        .navbar-link {
+            color: $color-white;
+        }
+    }
+
+    &.-white,
+    &.-menu-open {
+        background-color: $color-white;
+
+        .navbar-logo,
+        .navbar-link {
+            color: $color-black;
+        }
+    }
+
+    &.-menu-open {
+        .nav-mobile-menu {
+            left: 0%;
+        }
+    } 
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    width: 100%;
+    height: 100%;
+    padding: 2% 0%;
+
+    .logo-container {
+        flex: 0.4;
+    }
+
+    .menu-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex: 0.6;
+    }
+
+    .mobile-menu-container {
+        display: none;
+        justify-content: flex-end;
+    }
+
+    .navbar-logo,
+    .navbar-link {
+        text-decoration: none;
+        color: $color-white;
+    }
+
+    @include media-mobile-and-tablet {
+        .logo-container {
+            flex: 0.7;
+        }
+
+        .menu-container {
+            display: none;
+        }
+    
+        .mobile-menu-container {
+            display: flex;
+            flex: 0.3;
+        }
+    }
+}
+
+.navbar-logo {
+    font-size: $base-font-size + 10;
+    letter-spacing: 2px;
+    width: 100%;
+}
+
+.navbar-link {
+    margin-right: 7%;
+}
+
+.nav-menu-list {
+    @include list-unstyled;
+    @include grid-column(12);
+    padding: 70px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .nav-menu-list-item {
+        margin-bottom: 30px;
+    }
+
+    .nav-links {
+        text-decoration: none;
+        color: $color-black;
+        font-size: 27px;
+    }
+
+}
+
+.nav-mobile-menu {
+    position: fixed;
+    width: 100%;
+    background: $color-white;
+    top: 90px;
+    height: 100%;
+    left: 100%;
+    transition: left 0.5s;
+}
+
+.menu-icon {
+    // display: none;
+    color: $color-white;
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+@include media-desktop {
+    .-mobile-only {
+        display: none;
+    }
+}
+
+@include media-mobile-and-tablet {
+    .navbar-list {
+        display: none;
+    }
+
+
+    .menu-icon {
+        position: absolute;
+        right: 15px;
+    }
+
+}
