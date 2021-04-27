@@ -5,7 +5,7 @@ export const en = {
     "contactanos": "Contáctanos",
     "inscripcion": "Inscripción",
     "home_hero_title": "Clases personalizadas de natación",
-    "home_hero_subtitle": "",
+    "home_hero_subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "mas_informacion": "Más Información",
     "home_motto": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
     "home_intro": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
