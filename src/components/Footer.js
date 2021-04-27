@@ -10,26 +10,31 @@ export default function Footer() {
       <div className="section-content footer-container">
         <div className="footer-primary-container">
           <div className="footer-logo">
-            <Link to="/cursos" className="footer-logo-link">
-                {t("hablemos_espanol")}
+            <Link to="/clases" className="footer-logo-link">
+                {t("pepa_buendia_natacion")}
             </Link>
           </div>
         </div>
         <div className="footer-secondary-container">
           <ul className="footer-list">
             <li className="footer-list-item">
-              <Link to="/cursos" className="footer-link">
-                  {t("cursos")}
+              <Link to="/clases" className="footer-link">
+                  {t("clases")}
               </Link>
             </li>
-            <li className="footer-list-item">
+            {/* <li className="footer-list-item">
               <Link to="/inscripcion" className="footer-link">
                   {t("inscripcion")}
               </Link>
+            </li> */}
+            <li className="footer-list-item">
+              <Link to="/nosotros" className="footer-link">
+                  {t("nosotros")}
+              </Link>
             </li>
             <li className="footer-list-item">
-              <Link to="/contactame" className="footer-link">
-                  {t("contactame")}
+              <Link to="/contactanos" className="footer-link">
+                  {t("contactanos")}
               </Link>
             </li>
           </ul>

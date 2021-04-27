@@ -19,7 +19,7 @@ function Home () {
                 <li>{t("info_del_curso_item_5")}</li>
                 <li>{t("info_del_curso_item_6")}</li>
             </ul>
-            <Link to="/cursos" className="regular-button -secondary-style">
+            <Link to="/clases" className="regular-button -secondary-style">
               {t("mas_informacion")}
             </Link>
         </div>
@@ -31,17 +31,17 @@ function Home () {
 
     return (
         <div>
-            <Header whiteStyle={true} transparent={true}></Header>
+            <Header whiteStyle={false} transparent={true}></Header>
             <HeroBanner
                 title={t("home_hero_title")}
                 subtitle={t("home_hero_subtitle")}
                 buttonText={t("mas_informacion")}
-                buttonUrl="/cursos"
+                buttonUrl="/clases"
                 verticalAlignment="bottom"
                 horizontalAlignment="left"
                 hasBigTitle={false}
                 withBottomMargin={false}
-                imageUrl="/images/bg/background_home.jpeg"
+                imageUrl="/images/bg/background_home.jpg"
                 backgroundYPosition="90%"></HeroBanner>
             <section className="section-home-motto-and-intro">
                 <div className="section-content section-content-motto-and-intro">
@@ -56,17 +56,17 @@ function Home () {
             <InfoBlock
                 title={t("info_del_curso")}
                 htmlContent={infoCursoContentBlock}
-                pictureUrl="/images/info_cursos.jpeg"></InfoBlock>
+                pictureUrl="/images/info_clases.jpeg"></InfoBlock>
             <InfoBlock
                 title={t("sobre_mi")}
                 htmlContent={sobreMiContentBlock}
-                pictureUrl="/images/sobre_mi.jpeg"
+                pictureUrl="/images/sobre_mi.jpg"
                 reversed={true}></InfoBlock>
             <HeroBanner
-                title={t("hablemos")}
+                title={t("nademos")}
                 hasBigTitle={true}
                 withBottomMargin={true}
-                imageUrl="/images/bg/hablemos.jpg"
+                imageUrl="/images/bg/beach.jpg"
                 isShortHero={true}
                 notTitleHero={true}
                 backgroundYPosition="90%"></HeroBanner>

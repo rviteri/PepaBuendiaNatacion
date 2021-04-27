@@ -32,19 +32,22 @@ function Header ({whiteStyle = false, transparent = true}) {
                 <div className={`section-content navbar${menuOpen ? " -menu-open" : ""}${whiteStyle && !headerTransparentStyle ? " -white" : ""}${!whiteStyle && !headerTransparentStyle ? " -dark" : ""}`}>
                     <div className="logo-container">
                         <Link to="/" className="navbar-logo">
-                            {t("hablemos_espanol")}
+                            <img className="navbar-logo-image" src="images/main_logo.png"/>
                         </Link>
                     </div>
                     <div className="menu-container">
-                        <Link to="/cursos" className="navbar-link">
-                            {t("cursos")}
+                        <Link to="/clases" className="navbar-link">
+                            {t("clases")}
                         </Link>
-                        <Link to="/contactame" className="navbar-link">
-                            {t("contactame")}
+                        <Link to="/nosotros" className="navbar-link">
+                            {t("nosotros")}
                         </Link>
-                        <Link to="/inscripcion" className="regular-button -short">
+                        <Link to="/contactanos" className="navbar-link">
+                            {t("contactanos")}
+                        </Link>
+                        {/* <Link to="/inscripcion" className="regular-button -short">
                             {t("inscripcion")}
-                        </Link>
+                        </Link> */}
                     </div>
                     {!menuOpen ?
                         <div className="mobile-menu-container" onClick={toggleMenu}>
@@ -68,25 +71,25 @@ function Header ({whiteStyle = false, transparent = true}) {
                     <div className="nav-mobile-menu">
                         <ul className="nav-menu-list">
                             <li className="nav-menu-list-item">
-                                <Link to="/cursos" className="nav-links" onClick={closeMobileMenu}>
-                                    {t("cursos")}
+                                <Link to="/clases" className="nav-links" onClick={closeMobileMenu}>
+                                    {t("clases")}
                                 </Link>
                             </li>
                             <li className="nav-menu-list-item">
-                                <Link to="/contactame" className="nav-links" onClick={closeMobileMenu}>
-                                    {t("contactame")}
+                                <Link to="/nosotros" className="nav-links" onClick={closeMobileMenu}>
+                                    {t("nosotros")}
                                 </Link>
                             </li>
                             <li className="nav-menu-list-item">
-                                <Link to="/contactame" className="nav-links" onClick={closeMobileMenu}>
-                                    {t("contactame")}
+                                <Link to="/contactanos" className="nav-links" onClick={closeMobileMenu}>
+                                    {t("contactanos")}
                                 </Link>
                             </li>
-                            <li className="nav-menu-list-item">
+                            {/* <li className="nav-menu-list-item">
                                 <Link to="/inscripcion" className="nav-links" onClick={closeMobileMenu}>
                                     {t("inscripcion")}
                                 </Link>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>
